@@ -1,0 +1,14 @@
+Tshop\ReservationRepository.class
+Tshop\AbstractEvent$1.class
+Tshop\external\BookService.class
+Tshop\ReservationAccepted.class
+Tshop\Reservation.class
+Tshop\AbstractEvent.class
+Tshop\ReservationCanceled.class
+Tshop\ReservationRequested.class
+Tshop\external\Book.class
+Tshop\ReservationCancelRequested.class
+Tshop\config\kafka\KafkaProcessor.class
+Tshop\PolicyHandler.class
+Tshop\ReservationApplication.class
+Tshop\ReservationController.class
