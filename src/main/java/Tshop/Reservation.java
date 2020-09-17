@@ -29,9 +29,9 @@ public class Reservation {
         String checkQuantity = ReservationApplication.applicationContext.getBean(Tshop.external.BookService.class).checkBookQuantity(this.getBookId().toString());
 
         if(Integer.parseInt(checkQuantity) > 0){
-            this.setStatus("예약신청");
+            this.setStatus("bookReserveReq");
         }else{
-            this.setStatus("예약불가");
+            this.setStatus("bookOutOfStock");
         }
     }
     /**
@@ -41,14 +41,14 @@ public class Reservation {
     public void onPostPersist(){
         ReservationRequested reservationRequested = new ReservationRequested();
         BeanUtils.copyProperties(this, reservationRequested);
-        if("예약신청".equals(this.getStatus())) reservationRequested.publishAfterCommit();
+        if("bookReserveReq".equals(this.getStatus())) reservationRequested.publishAfterCommit();
     }
     /**
      * 예약취소 이 후 상품재고 원복 및 배정정보 삭제 이벤트 전달
      * */
     @PostUpdate
     public  void onPostUpdate(){
-        if("예약취소".equals(this.getStatus())){
+        if("bookCancel".equals(this.getStatus())){
             ReservationCancelRequested reservationCancelRequested = new ReservationCancelRequested();
             BeanUtils.copyProperties(this, reservationCancelRequested);
             reservationCancelRequested.publishAfterCommit();
